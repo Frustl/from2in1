@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frustl Science Hub</title>
+  <meta
+    name="description"
+    content="Единый сайт с формулами по физике и каталогом из 200 ученых-профессоров в одном стиле."
+  >
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      options: {
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="data-formulas.js"></script>
+  <script defer src="data-scientists.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="bg-layer bg-grid" aria-hidden="true"></div>
+  <div class="bg-layer bg-scan" aria-hidden="true"></div>
+  <div class="bg-layer bg-orbit" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar__inner shell">
+      <a class="brand" href="#top">Frustl Science Hub</a>
+      <nav class="topnav" aria-label="Основная навигация">
+        <a href="#hub">Хаб</a>
+        <a href="#formulas">Формулы</a>
+        <a href="#scientists">Учёные</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero panel">
+      <div class="hero__copy">
+        <p class="eyebrow">Unified Learning Archive</p>
+        <h1>Физика и великие учёные в одном сайте</h1>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#formulas">Открыть формулы</a>
+          <a class="button" href="#scientists">Открыть каталог учёных</a>
+        </div>
+      </div>
+      <div class="hero__stats">
+        <article class="stat-card">
+          <span class="stat-card__label">Разделов физики</span>
+          <strong class="stat-card__value" id="hero-topic-count">6</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Формул</span>
+          <strong class="stat-card__value" id="hero-formula-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Учёных</span>
+          <strong class="stat-card__value" id="hero-scientist-count">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <section id="hub" class="hub-grid">
+      <article class="hub-card panel">
+        <p class="hub-card__kicker">Проект 1</p>
+        <h2>Physics Formulas</h2>
+        <p>
+          Формулы по физике для 10-11 класса: механика, термодинамика, электродинамика, оптика, квантовая и ядерная физика.
+        </p>
+        <ul class="hub-card__list">
+          <li>Быстрый поиск по формулам и темам</li>
+          <li>Карточки с пояснением и связью с открытиями</li>
+          <li>Подсветка ключевых формул</li>
+        </ul>
+        <a class="button button--small" href="#formulas">Перейти в раздел</a>
+      </article>
+
+      <article class="hub-card panel">
+        <p class="hub-card__kicker">Проект 2</p>
+        <h2>200 Science People</h2>
+        <p>
+          Подборка из 200 учёных-профессоров по математике, физике, химии, биологии, информатике, космонавтике и смежным областям.
+        </p>
+        <ul class="hub-card__list">
+          <li>Фильтрация по научным направлениям</li>
+          <li>Карточки с достижениями</li>
+          <li>Связи между учёными и формулами</li>
+        </ul>
+        <a class="button button--small" href="#scientists">Перейти в раздел</a>
+      </article>
+    </section>
+
+    <section id="formulas" class="content-section panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Collection A</p>
+          <h2>Формулы по физике</h2>
+          <p class="section-copy">
+            Вся база формул собрана в карточки с поиском, навигацией по темам и быстрой справкой по важным открытиям.
+          </p>
+        </div>
+        <div class="summary-box">
+          <span class="summary-box__label">Показано</span>
+          <strong class="summary-box__value"><span id="formula-visible-count">0</span>/<span id="formula-total-count">0</span></strong>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-field">
+          <span>Поиск формулы</span>
+          <input id="formula-search" type="search" placeholder="Например: Ом, E = mc^2, энергия">
+        </label>
+        <div class="chip-row" id="formula-topic-filters" aria-label="Фильтр тем формул"></div>
+      </div>
+
+      <div class="formula-sections" id="formula-root"></div>
+      <p class="empty-state" id="formula-empty" hidden>По этому запросу формулы не найдены.</p>
+    </section>
+
+    <section id="scientists" class="content-section panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Collection B</p>
+          <h2>200 учёных-профессоров</h2>
+          <p class="section-copy">
+            Каталог учёных с фильтрацией по дисциплинам. Карточки связаны с формулами и показывают, кто стоял за ключевыми открытиями.
+          </p>
+        </div>
+        <div class="summary-box">
+          <span class="summary-box__label">Показано</span>
+          <strong class="summary-box__value"><span id="scientist-visible-count">0</span>/<span id="scientist-total-count">0</span></strong>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-field">
+          <span>Поиск учёного</span>
+          <input id="scientist-search" type="search" placeholder="Например: Ньютон, Эйнштейн, Королёв">
+        </label>
+        <div class="chip-row" id="scientist-field-filters" aria-label="Фильтр областей"></div>
+      </div>
+
+      <div class="scientist-grid" id="scientist-root"></div>
+      <p class="empty-state" id="scientist-empty" hidden>По этому запросу учёные не найдены.</p>
+    </section>
+  </main>
+
+  <div class="detail-overlay" id="detail-overlay" hidden></div>
+  <aside class="detail-panel" id="detail-panel" hidden aria-live="polite">
+    <button class="detail-panel__close" id="detail-close" aria-label="Закрыть панель">×</button>
+    <div class="detail-panel__content" id="detail-content"></div>
+  </aside>
+</body>
+</html>
